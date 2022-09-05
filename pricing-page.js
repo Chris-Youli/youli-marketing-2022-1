@@ -70,6 +70,8 @@ $(function () {
         pricingTableAmountExplorer: $("#pricing-table-amount-explorer"),
         pricingTablAmounteByo: $("#pricing-table-amount-byo"),
         pricingTableAmountPnp: $("#pricing-table-amount-pnp"),
+        //new label for venture
+        pricingTableAmountVenture: $("#pricing-table-amount-venture"),
 
         //currency in the table header
         pricingTableCurrency: $(".pricing-table-currency"),
@@ -753,12 +755,16 @@ $(function () {
                 uiStorage.pricingTableAmountExplorer.html(packageCostPerMonth.explorerUSDMonthly);
                 uiStorage.pricingTablAmounteByo.html(packageCostPerMonth.byoUSDMonthly);
                 uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.pnpUSDMonthly);
+                uiStorage.pricingTableAmountVenture.html(packageCostPerMonth.ventureUSDMonthly);
+
 
             } else {
                 //alert("switch to annually");
                 uiStorage.pricingTableAmountExplorer.html(packageCostPerMonth.explorerUSDAnnual);
                 uiStorage.pricingTablAmounteByo.html(packageCostPerMonth.byoUSDAnnual);
                 uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.pnpUSDAnnual);
+                uiStorage.pricingTableAmountVenture.html(packageCostPerMonth.ventureUSDAnnual);
+
             }
 
             uiStorage.pricingTableCurrency.each(function () {
@@ -773,11 +779,15 @@ $(function () {
                 uiStorage.pricingTableAmountExplorer.html(packageCostPerMonth.explorerAUDMonthly);
                 uiStorage.pricingTablAmounteByo.html(packageCostPerMonth.byoAUDMonthly);
                 uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.pnpAUDMonthly);
+                uiStorage.pricingTableAmountVenture.html(packageCostPerMonth.ventureAUDMonthly);
+
             } else {
                 //alert("switch to annually");
                 uiStorage.pricingTableAmountExplorer.html(packageCostPerMonth.explorerAUDAnnual);
                 uiStorage.pricingTablAmounteByo.html(packageCostPerMonth.byoAUDAnnual);
                 uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.pnpAUDAnnual);
+                uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.ventureAUDAnnual);
+
 
             }
 
