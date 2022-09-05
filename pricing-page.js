@@ -1,5 +1,6 @@
 $(function () {
     // links to elements on the page
+    //this is for changes on 2022-01
     var uiStorage = {
 
         billingCheckbox: $("#billingCheckbox"),
