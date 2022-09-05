@@ -15,11 +15,15 @@ $(function () {
         explorerCostAmountLeft: $(".explorer-cost-amount-left"),
         byoCostAmountLeft: $(".byo-cost-amount-left"),
         pnpCostAmountLeft: $(".pnp-cost-amount-left"),
+        //new label for Venture
+        ventureCostAmountLeft: $(".venture-cost-amount-left"),
 
 
         explorerCostAmount: $("#explorer-cost-amount"),
         byoCostAmount: $("#byo-cost-amount"),
         pnpCostAmount: $("#pnp-cost-amount"),
+        //new label for Venture
+        ventureCostAmount: $("#venture-cost-amount"),
 
 
         packageSelectionRadioButton: $(".package-card-radio-button"),
@@ -27,6 +31,8 @@ $(function () {
         packageCardLeftExplorer: $(".pricing-left.explorer"),
         packageCardLeftBYO: $(".pricing-left.byo"),
         packageCardLeftPNP: $(".pricing-left.pnp"),
+        //new label for Venture
+        packageCardLeftVenture: $(".pricing-left.venture"),
         packageCardLeftEnterprise: $(".pricing-left.enterprise"),
 
 
@@ -78,6 +84,8 @@ $(function () {
         explorerBookingFee: "+4% booking fees",
         byoBookingFee: "+1% booking fees",
         pnpBookingFee: "+1% booking fees",
+        //new label for Venture
+        ventureBookingFee: "+0.5% booking fees",
         enterpriseBookingFee: "0% booking fees & more"
 
     }
@@ -86,6 +94,8 @@ $(function () {
         explorer: "explorer",
         byo: "pro byo website",
         pnp: "Pro+ Website",
+        //new label for Venture
+        venture: "Venture",
         enterprise: "enterprise"
     }
 
@@ -111,7 +121,13 @@ $(function () {
         pnpUSDAnnual: "73",
         pnpUSDMonthly: "80",
         pnpAUDAnnual: "100",
-        pnpAUDMonthly: "110"
+        pnpAUDMonthly: "110",
+
+        //new label for Venture
+        ventureUSDAnnual: "400",
+        ventureUSDMonthly: "450",
+        ventureAUDAnnual: "567",
+        ventureAUDMonthly: "640"
     };
 
     var currencyTextAndSign = {
@@ -138,9 +154,8 @@ $(function () {
     });
 
 
-
-    //cost amount array
-    //containing cost amount label for desktop view and mobile view
+    //setup initial value of cost
+    //containing cost amount label for desktop view and mobile view on the left panel
     uiStorage.explorerCostAmountLeft.each(function () {
         $(this).html(packageCostPerMonth.explorerUSDAnnual);
     });
@@ -150,11 +165,15 @@ $(function () {
     uiStorage.pnpCostAmountLeft.each(function () {
         $(this).html(packageCostPerMonth.pnpUSDAnnual);
     });
+    uiStorage.ventureCostAmountLeft.each(function () {
+        $(this).html(packageCostPerMonth.ventureUSDAnnual);
+    })
 
-
+    //set up initial value of cost for desktop switch card
     uiStorage.explorerCostAmount.html(packageCostPerMonth.explorerUSDAnnual);
     uiStorage.byoCostAmount.html(packageCostPerMonth.byoUSDAnnual);
     uiStorage.pnpCostAmount.html(packageCostPerMonth.pnpUSDAnnual);
+    uiStorage.ventureCostAmount.html(packageCostPerMonth.ventureUSDAnnual);
 
 
     //radio button defaults is set in the designer via custom attribute
@@ -551,6 +570,7 @@ $(function () {
                 uiStorage.packageCardLeftExplorer.show();
                 uiStorage.packageCardLeftBYO.hide();
                 uiStorage.packageCardLeftPNP.hide();
+                uiStorage.packageCardLeftVenture.hide();
                 uiStorage.packageCardLeftEnterprise.hide();
                 break;
 
@@ -558,6 +578,7 @@ $(function () {
                 uiStorage.packageCardLeftExplorer.hide();
                 uiStorage.packageCardLeftBYO.show();
                 uiStorage.packageCardLeftPNP.hide();
+                uiStorage.packageCardLeftVenture.hide();
                 uiStorage.packageCardLeftEnterprise.hide();
                 break;
 
@@ -565,6 +586,15 @@ $(function () {
                 uiStorage.packageCardLeftExplorer.hide();
                 uiStorage.packageCardLeftBYO.hide();
                 uiStorage.packageCardLeftPNP.show();
+                uiStorage.packageCardLeftVenture.hide();
+                uiStorage.packageCardLeftEnterprise.hide();
+                break;
+
+            case 'venture':
+                uiStorage.packageCardLeftExplorer.hide();
+                uiStorage.packageCardLeftBYO.hide();
+                uiStorage.packageCardLeftPNP.hide();
+                uiStorage.packageCardLeftVenture.show();
                 uiStorage.packageCardLeftEnterprise.hide();
                 break;
 
@@ -572,6 +602,7 @@ $(function () {
                 uiStorage.packageCardLeftExplorer.hide();
                 uiStorage.packageCardLeftBYO.hide();
                 uiStorage.packageCardLeftPNP.hide();
+                uiStorage.packageCardLeftVenture.hide();
                 uiStorage.packageCardLeftEnterprise.show();
                 break;
             default:
@@ -592,6 +623,7 @@ $(function () {
                 uiStorage.explorerCostAmount.html(packageCostPerMonth.explorerUSDMonthly);
                 uiStorage.byoCostAmount.html(packageCostPerMonth.byoUSDMonthly);
                 uiStorage.pnpCostAmount.html(packageCostPerMonth.pnpUSDMonthly);
+                uiStorage.ventureCostAmount.html(packageCostPerMonth.ventureUSDMonthly);
 
 
                 //updating cost amount label on the left hand side
@@ -605,6 +637,10 @@ $(function () {
                     $(this).html(packageCostPerMonth.pnpUSDMonthly);
                 });
 
+                uiStorage.ventureCostAmountLeft.each(function () {
+                    $(this).html(packageCostPerMonth.ventureUSDMonthly);
+                });
+
 
 
             } else {
@@ -612,6 +648,8 @@ $(function () {
                 uiStorage.explorerCostAmount.html(packageCostPerMonth.explorerUSDAnnual);
                 uiStorage.byoCostAmount.html(packageCostPerMonth.byoUSDAnnual);
                 uiStorage.pnpCostAmount.html(packageCostPerMonth.pnpUSDAnnual);
+                uiStorage.ventureCostAmount.html(packageCostPerMonth.ventureUSDAnnual);
+
 
                 uiStorage.explorerCostAmountLeft.each(function () {
                     $(this).html(packageCostPerMonth.explorerUSDAnnual);
@@ -621,6 +659,9 @@ $(function () {
                 });
                 uiStorage.pnpCostAmountLeft.each(function () {
                     $(this).html(packageCostPerMonth.pnpUSDAnnual);
+                });
+                uiStorage.ventureCostAmountLeft.each(function () {
+                    $(this).html(packageCostPerMonth.ventureUSDAnnual);
                 });
 
             }
@@ -643,6 +684,8 @@ $(function () {
                 uiStorage.explorerCostAmount.html(packageCostPerMonth.explorerAUDMonthly);
                 uiStorage.byoCostAmount.html(packageCostPerMonth.byoAUDMonthly);
                 uiStorage.pnpCostAmount.html(packageCostPerMonth.pnpAUDMonthly);
+                uiStorage.ventureCostAmount.html(packageCostPerMonth.ventureAUDMonthly);
+
 
 
                 uiStorage.explorerCostAmountLeft.each(function () {
@@ -654,12 +697,18 @@ $(function () {
                 uiStorage.pnpCostAmountLeft.each(function () {
                     $(this).html(packageCostPerMonth.pnpAUDMonthly);
                 });
+                uiStorage.ventureCostAmountLeft.each(function () {
+                    $(this).html(packageCostPerMonth.ventureAUDMonthly);
+                });
+
 
             } else {
                 //alert("switch to annually");
                 uiStorage.explorerCostAmount.html(packageCostPerMonth.explorerAUDAnnual);
                 uiStorage.byoCostAmount.html(packageCostPerMonth.byoAUDAnnual);
                 uiStorage.pnpCostAmount.html(packageCostPerMonth.pnpAUDAnnual);
+                uiStorage.ventureCostAmount.html(packageCostPerMonth.ventureAUDAnnual);
+
 
                 uiStorage.explorerCostAmountLeft.each(function () {
                     $(this).html(packageCostPerMonth.explorerAUDAnnual);
@@ -669,6 +718,9 @@ $(function () {
                 });
                 uiStorage.pnpCostAmountLeft.each(function () {
                     $(this).html(packageCostPerMonth.pnpAUDAnnual);
+                });
+                uiStorage.ventureCostAmountLeft.each(function () {
+                    $(this).html(packageCostPerMonth.ventureAUDAnnual);
                 });
             }
 
