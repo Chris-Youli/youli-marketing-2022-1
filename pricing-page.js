@@ -53,6 +53,7 @@ $(function () {
         calculatorLottieExplorer: $("#calculator-lottie-explorer"),
         calculatorLottieByo: $("#calculator-lottie-byo"),
         calculatorLottiePnp: $("#calculator-lottie-pnp"),
+        calculatorLottieVenture: $("#calculator-lottie-venture"),
         calculatorLottieEnterprise: $("#calculator-lottie-enterprise"),
         calculatorPackageLabel: $("#calculator-package-label"),
         calculatorCurrencyLabel: $("#calculator-currency-label"),
@@ -106,6 +107,7 @@ $(function () {
         explorer: "explorer",
         byo: "byo",
         pnp: "pnp",
+        venture: "venture",
         enterprise: "enterprise"
     }
 
@@ -279,12 +281,19 @@ $(function () {
 
         if (isCrmApiPhoneSupportChecked()) {
             //alert("enterprise");
-
-            showEnterpriseOnCalculator();
-        } else {
-            if (getNumberOfTeam() > 3) {
+            if (isCrmChecked || isApiChecked){
+                showVentureOnCalculator();
+            }else{
                 showEnterpriseOnCalculator();
-            } else if (getNumberOfTeam() <= 3 && getNumberOfTeam() >= 0) {
+            }
+
+        } else {
+            if (getNumberOfTeam() > 4) {
+                showEnterpriseOnCalculator();
+            } else if(getNumberOfTeam() >2){
+                showVentureOnCalculator();
+            }
+            else if (getNumberOfTeam() <= 2 && getNumberOfTeam() >= 0) {
 
 
                 if (getRevenueInput() < 25000 && getRevenueInput() >= 0) {
@@ -299,7 +308,9 @@ $(function () {
                     } else {
                         showByoOnCalculator();
                     }
-                } else {
+                } else if (getRevenueInput() < 1160000){
+                    showVentureOnCalculator();
+                }else{
                     showEnterpriseOnCalculator();
                 }
             }
@@ -354,6 +365,30 @@ $(function () {
         }
     }
 
+    var isCrmChecked = function(){
+        if (uiStorage.calculatorCrmCheckbox.is(':checked')){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    var isApiChecked = function () {
+        if (uiStorage.calculatorApiCheckbox.is(':checked')){
+            return true;
+        }else {
+            return false;
+        }  
+    }
+
+    var isPhoneSupportChecked = function () {
+        if (uiStorage.calculatorPhoneSupportCheckbox.is(':checked')){
+            return true;
+        }else {
+            return false;
+        }  
+    }
+
 
     var showExplorerOnCalculator = function () {
         calculatorResult = calculatorResultOptions.explorer;
@@ -361,6 +396,7 @@ $(function () {
         uiStorage.calculatorLottieExplorer.show();
         uiStorage.calculatorLottieByo.hide();
         uiStorage.calculatorLottiePnp.hide();
+        uiStorage.calculatorLottieVenture.hide();
         uiStorage.calculatorLottieEnterprise.hide();
 
         uiStorage.calculatorBillingBlock.show();
@@ -407,6 +443,7 @@ $(function () {
         uiStorage.calculatorLottieExplorer.hide();
         uiStorage.calculatorLottieByo.show();
         uiStorage.calculatorLottiePnp.hide();
+        uiStorage.calculatorLottieVenture.hide();
         uiStorage.calculatorLottieEnterprise.hide();
 
         uiStorage.calculatorBillingBlock.show();
@@ -452,6 +489,7 @@ $(function () {
         uiStorage.calculatorLottieExplorer.hide();
         uiStorage.calculatorLottieByo.hide();
         uiStorage.calculatorLottiePnp.show();
+        uiStorage.calculatorLottieVenture.hide();
         uiStorage.calculatorLottieEnterprise.hide();
 
         uiStorage.calculatorBillingBlock.show();
@@ -490,12 +528,59 @@ $(function () {
 
     }
 
+
+    var showVentureOnCalculator = function () {
+        calculatorResult = calculatorResultOptions.venture;
+
+        uiStorage.calculatorLottieExplorer.hide();
+        uiStorage.calculatorLottieByo.hide();
+        uiStorage.calculatorLottiePnp.hide();
+        uiStorage.calculatorLottieVenture.show();
+        uiStorage.calculatorLottieEnterprise.hide();
+
+        uiStorage.calculatorBillingBlock.show();
+
+        //set checkbox unchecked(annual)
+        //set initial state of toggle to left(annual)
+        checkBillingFrenquencyAnnual();
+
+        uiStorage.calculatorPackageLabel.html(packageNameText.venture);
+
+        var selectedCurrency = uiStorage.currencySelectField.val().toLowerCase();
+
+        switch (selectedCurrency) {
+            //select usd, initial state is annual cost
+            case 'usd':
+                uiStorage.calculatorCurrencyLabel.html(currencyTextAndSign.currencyUSD);
+                uiStorage.calculatorCost.html(!billingFrequencyAnnual ? packageCostPerMonth.ventureUSDAnnual : packageCostPerMonth.ventureUSDMonthly);
+                break;
+
+            //select aud, initial state is annual cost
+            case 'aud':
+                uiStorage.calculatorCurrencyLabel.html(currencyTextAndSign.currencyAUD);
+                uiStorage.calculatorCost.html(!billingFrequencyAnnual ? packageCostPerMonth.ventureAUDAnnual : packageCostPerMonth.ventureAUDMonthly);
+                break;
+
+            default:
+                alert("unexpected currency selected in the dropdown");
+        }
+
+
+        uiStorage.calculatorEnterpriseCallUsLabel.hide();
+        uiStorage.calculatorCurrencyLabel.show();
+        uiStorage.calculatorCost.show();
+        uiStorage.calculatorPerMonthText.show();
+        uiStorage.calculatorBookingFee.html(bookingFeeLabel.pnpBookingFee);
+
+    }
+
     var showEnterpriseOnCalculator = function () {
         calculatorResult = calculatorResultOptions.enterprise;
 
         uiStorage.calculatorLottieExplorer.hide();
         uiStorage.calculatorLottieByo.hide();
         uiStorage.calculatorLottiePnp.hide();
+        uiStorage.calculatorLottieVenture.hide();
         uiStorage.calculatorLottieEnterprise.show();
 
         uiStorage.calculatorBillingBlock.hide();
