@@ -279,19 +279,9 @@ $(function () {
             uiStorage.calculatorCardSwappable.show();
         }, 1000);
 
-        if (isCrmApiPhoneSupportChecked()) {
-            //alert("enterprise");
-            if (isCrmChecked || isApiChecked){
-                console.log('crm not enterprise' + isCrmChecked());
-                console.log('api not enterprise' + isApiChecked());
-                console.log('phone sup not enterprise' + isPhoneSupportChecked());
-                showVentureOnCalculator();
-            }else{
-                console.log('crm should enterprise' + isCrmChecked());
-                console.log('api should enterprise' + isApiChecked());
-                console.log('phone sup should enterprise' + isPhoneSupportChecked());
-                showEnterpriseOnCalculator();
-            }
+        if (isPhoneSupportChecked()) {
+            showEnterpriseOnCalculator();
+
 
         } else {
             if (getNumberOfTeam() > 4) {
@@ -300,7 +290,10 @@ $(function () {
                 showVentureOnCalculator();
             }
             else if (getNumberOfTeam() <= 2 && getNumberOfTeam() >= 0) {
-
+                if(isCrmChecked || isApiChecked){
+                    showVentureOnCalculator();
+                    return;
+                }
 
                 if (getRevenueInput() < 25000 && getRevenueInput() >= 0) {
                     if (isWebsiteChecked()) {
