@@ -291,8 +291,8 @@ $(function () {
                 showVentureOnCalculator();
             }
             else if (getNumberOfTeam() <= 2 && getNumberOfTeam() >= 0) {
-                if(isCrmChecked || isApiChecked){
-                    console.log('isCrmChecked || isApiChecked');
+                if(isCrmChecked() || isApiChecked()){
+
                     showVentureOnCalculator();
                     return;
                 }
