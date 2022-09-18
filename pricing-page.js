@@ -282,14 +282,14 @@ $(function () {
         if (isCrmApiPhoneSupportChecked()) {
             //alert("enterprise");
             if (isCrmChecked || isApiChecked){
-                console.log('crm' + isCrmChecked());
-                console.log('api' + isApiChecked);
-                console.log('phone sup' + isPhoneSupportChecked());
+                console.log('crm ' + isCrmChecked());
+                console.log('api ' + isApiChecked());
+                console.log('phone sup ' + isPhoneSupportChecked());
                 showVentureOnCalculator();
             }else{
-                console.log('crm' + isCrmChecked());
-                console.log('api' + isApiChecked());
-                console.log('phone sup' + isPhoneSupportChecked());
+                console.log('crm ' + isCrmChecked());
+                console.log('api ' + isApiChecked());
+                console.log('phone sup ' + isPhoneSupportChecked());
                 showEnterpriseOnCalculator();
             }
 
