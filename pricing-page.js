@@ -282,8 +282,14 @@ $(function () {
         if (isCrmApiPhoneSupportChecked()) {
             //alert("enterprise");
             if (isCrmChecked || isApiChecked){
+                console.log('crm' + isCrmChecked());
+                console.log('api' + isApiChecked);
+                console.log('phone sup' + isPhoneSupportChecked());
                 showVentureOnCalculator();
             }else{
+                console.log('crm' + isCrmChecked());
+                console.log('api' + isApiChecked());
+                console.log('phone sup' + isPhoneSupportChecked());
                 showEnterpriseOnCalculator();
             }
 
@@ -300,7 +306,11 @@ $(function () {
                     if (isWebsiteChecked()) {
                         showPnpOnCalculator();
                     } else {
-                        showExplorerOnCalculator();
+                        if(getNumberOfTeam() = 2){
+                            showByoOnCalculator();
+                        }else{
+                            showExplorerOnCalculator();
+                        }
                     }
                 } else if (getRevenueInput() >= 25000 && getRevenueInput() < 572000) {
                     if (isWebsiteChecked()) {
