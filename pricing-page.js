@@ -287,10 +287,12 @@ $(function () {
             if (getNumberOfTeam() > 4) {
                 showEnterpriseOnCalculator();
             } else if(getNumberOfTeam() >2){
+                console.log('etNumberOfTeam() >2');
                 showVentureOnCalculator();
             }
             else if (getNumberOfTeam() <= 2 && getNumberOfTeam() >= 0) {
                 if(isCrmChecked || isApiChecked){
+                    console.log('isCrmChecked || isApiChecked');
                     showVentureOnCalculator();
                     return;
                 }
