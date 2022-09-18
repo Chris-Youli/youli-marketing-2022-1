@@ -580,7 +580,7 @@ $(function () {
         uiStorage.calculatorCurrencyLabel.show();
         uiStorage.calculatorCost.show();
         uiStorage.calculatorPerMonthText.show();
-        uiStorage.calculatorBookingFee.html(bookingFeeLabel.pnpBookingFee);
+        uiStorage.calculatorBookingFee.html(bookingFeeLabel.ventureBookingFee);
 
     }
 
