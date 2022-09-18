@@ -301,7 +301,7 @@ $(function () {
                     if (isWebsiteChecked()) {
                         showPnpOnCalculator();
                     } else {
-                        if(getNumberOfTeam() = 2){
+                        if(getNumberOfTeam() == 2){
                             showByoOnCalculator();
                         }else{
                             showExplorerOnCalculator();
