@@ -876,7 +876,7 @@ $(function () {
                 uiStorage.pricingTableAmountExplorer.html(packageCostPerMonth.explorerAUDAnnual);
                 uiStorage.pricingTablAmounteByo.html(packageCostPerMonth.byoAUDAnnual);
                 uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.pnpAUDAnnual);
-                uiStorage.pricingTableAmountPnp.html(packageCostPerMonth.ventureAUDAnnual);
+                uiStorage.pricingTableAmountVenture.html(packageCostPerMonth.ventureAUDAnnual);
 
 
             }
