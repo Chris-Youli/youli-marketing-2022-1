@@ -84,7 +84,7 @@ $(function () {
     };
 
     var bookingFeeLabel = {
-        explorerBookingFee: "+4% booking fees",
+        explorerBookingFee: "+3% booking fees",
         byoBookingFee: "+1% booking fees",
         pnpBookingFee: "+1% booking fees",
         //new label for Venture
